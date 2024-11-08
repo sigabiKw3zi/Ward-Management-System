@@ -1,0 +1,54 @@
+﻿@model VirtualHealthProject.Models.Vitals
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_NurseLayout";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Vitals</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VitalsId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VitalsId)
+        </dd>
+            @Html.DisplayNameFor(model => model.Temperature)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Temperature)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PulseRate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PulseRate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BloodPressure)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BloodPressure)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PainLevel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PainLevel)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ScheduleMedication)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ScheduleMedication)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.VitalsId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

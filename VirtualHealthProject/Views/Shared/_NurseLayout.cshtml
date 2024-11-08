@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.ico">
+    <title>Virtual-Health-Bridge</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="main-wrapper">
+        <partial name="_NurseHeader" />
+        <partial name="_NurseSideBar" />
+        <div class="page-wrapper">
+            <div class="content">
+                @RenderBody()
+            </div>
+            <div class="notification-box">
+                <div class="msg-sidebar notifications msg-noti">
+                    <div class="topnav-dropdown-header">
+                        <span>Messages</span>
+                    </div>
+                    <div class="drop-scroll msg-list-scroll" id="msg_list">
+                        <ul class="list-box">
+                            <!-- Message items go here -->
+                        </ul>
+                    </div>
+                    <div class="topnav-dropdown-footer">
+                        <a href="chat.html">See all messages</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+
+    <!-- Add this line to render the Scripts section -->
+    @RenderSection("Scripts", required: false)
+
+    <script src="~/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.slimscroll.js"></script>
+    <script src="~/assets/js/Chart.bundle.js"></script>
+    <script src="~/assets/js/chart.js"></script>
+    <script src="~/assets/js/app.js"></script>
+</body>
+</html>

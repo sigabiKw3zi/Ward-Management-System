@@ -1,0 +1,71 @@
+﻿@model VirtualHealthProject.Models.ViewConsumablesStock
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumable Stock Levels Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .container {
+            max-width: 800px;
+        }
+
+        .btn-back {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Consumable Stock Levels Details</h1>
+
+        <div>
+            <h4 class="mb-3">Consumable Information</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.StockLevel)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.StockLevel)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ReorderLevel)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ReorderLevel)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ExpirationDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ExpirationDate)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="mt-4">
+            @* <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.ConsumableId">Edit</a> *@
+            <a class="btn btn-secondary btn-back" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿@model VirtualHealthProject.Models.DoctorVisit
+
+@{
+    Layout = "_DoctorLayout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+    <div>
+        <h4>Doctor Visit</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ScheduledMedication)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ScheduledMedication)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ScheduleIVMedication)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ScheduleIVMedication)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ScheduleVMedication)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ScheduleVMedication)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ChronicConditionsStatus)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ChronicConditionsStatus)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ChronicConditions)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ChronicConditions)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.VisitId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+</html>

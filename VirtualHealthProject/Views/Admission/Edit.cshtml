@@ -1,0 +1,39 @@
+﻿@model VirtualHealthProject.Models.AdmissionViewModel
+@{
+    ViewData["Title"] = "Edit Allocation";
+    Layout = "_WardAdminLayout";
+}
+<h2>Edit Admission</h2>
+
+<form method="post" asp-action="Edit">
+    <input type="hidden" asp-for="AdmissionId" />
+
+    <div class="form-group">
+        <label asp-for="PatientID"></label>
+        <input asp-for="PatientID" class="form-control" />
+        <span asp-validation-for="PatientID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PatientName"></label>
+        <input asp-for="PatientName" class="form-control" />
+        <span asp-validation-for="PatientName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AdmissionDate"></label>
+        <input asp-for="AdmissionDate" class="form-control" type="date" />
+        <span asp-validation-for="AdmissionDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Status"></label>
+        <input asp-for="Status" class="form-control" />
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save Changes" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</form>

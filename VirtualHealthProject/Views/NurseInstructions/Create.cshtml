@@ -1,0 +1,78 @@
+﻿@model VirtualHealthProject.ViewModels.InstructionViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_DoctorLayout";
+}
+
+<h4 class="text-center">Create Instruction</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div class="card-box">
+            <h4 class="card-title">Instruction Form</h4>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="Description" class="control-label">Description</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="CreatedDate" class="control-label">Created Date</label>
+                    <input asp-for="CreatedDate" class="form-control" type="date" />
+                    <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="Remarks" class="control-label">Remarks</label>
+                    <textarea asp-for="Remarks" class="form-control"></textarea>
+                    <span asp-validation-for="Remarks" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="RemarkDate" class="control-label">Remark Date</label>
+                    <input asp-for="RemarkDate" class="form-control" type="date" />
+                    <span asp-validation-for="RemarkDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="PatientID">Select Patient</label>
+                    <select asp-for="PatientID" class="form-control" asp-items="Model.Patients"></select>
+                    <span asp-validation-for="PatientID" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="UserId"></label>
+                    <select asp-for="UserId" asp-items="Model.Users" class="form-control"></select>
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="Status">Select Status</label>
+                    <select asp-for="Status" class="form-control">
+                        <option value="">Select Status</option>
+                        <option value="New">New</option>
+                        <option value="Read">Read</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <div class="form-group d-inline mb-2">
+                    <input type="submit" value="Create" class="btn btn-primary me-2" />
+                    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

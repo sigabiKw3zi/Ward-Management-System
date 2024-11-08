@@ -1,0 +1,91 @@
+﻿@model VirtualHealthProject.Models.NurseDispense
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_NurseLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Dispensed Medication</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Edit Nurse Dispensed Medication</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Nurse Dispensed Medication Information</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <input type="hidden" asp-for="DispenceId" />
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="ScheduledMedication" class="control-label"></label>
+                            <input asp-for="ScheduledMedication" class="form-control" />
+                            <span asp-validation-for="ScheduledMedication" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="PatientName" class="control-label"></label>
+                            <input asp-for="PatientName" class="form-control" />
+                            <span asp-validation-for="PatientName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="DatePrescribed" class="control-label"></label>
+                            <input asp-for="DatePrescribed" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="DatePrescribed" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="MedicineName" class="control-label"></label>
+                            <input asp-for="MedicineName" class="form-control" />
+                            <span asp-validation-for="MedicineName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Quantity" class="control-label"></label>
+                            <input asp-for="Quantity" class="form-control" />
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="Dosage" class="control-label"></label>
+                            <input asp-for="Dosage" class="form-control" />
+                            <span asp-validation-for="Dosage" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a class="btn btn-secondary ml-2" asp-action="Index">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

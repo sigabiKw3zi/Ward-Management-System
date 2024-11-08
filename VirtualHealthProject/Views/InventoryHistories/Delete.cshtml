@@ -1,0 +1,95 @@
+﻿@model VirtualHealthProject.Models.InventoryHistory
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_StockManagerLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Inventory History</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .container {
+            max-width: 800px;
+        }
+
+        .btn-back {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Delete Inventory History</h1>
+
+        <h3 class="text-danger">Are you sure you want to delete this?</h3>
+        <hr />
+
+        <div>
+            <h4>Inventory History Details</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ConsumableId)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ConsumableId)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.MovementType)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.MovementType)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.MovementDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.MovementDate)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Notes)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Notes)
+                </dd>
+            </dl>
+
+            <form asp-action="Delete" method="post" onsubmit="return confirmDelete()">
+                <input type="hidden" asp-for="InventoryHistoryId" />
+
+                <div class="alert alert-warning text-center">
+                    <strong>Warning!</strong> This action cannot be undone.
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a class="btn btn-secondary btn-back" asp-action="Index">Back to List</a>
+                </div>
+            </form>
+
+            <script>
+                function confirmDelete() {
+                    return confirm("Are you sure you want to delete this inventory history?");
+                }
+            </script>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

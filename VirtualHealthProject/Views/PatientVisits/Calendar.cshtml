@@ -1,0 +1,115 @@
+﻿@model VirtualHealthProject.Models.PatientVisits
+@{
+    Layout = "_DoctorLayout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.ico">
+    <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-8 col-4">
+                <h4 class="page-title">Calendar</h4>
+            </div>
+            <div class="col-sm-4 col-8 text-right m-b-30">
+                <button type="button" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#add_event"><i class="fa fa-plus"></i> Add Event</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-box mb-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade none-border" id="event-modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content modal-md">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add Visit</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body"></div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-primary submit-btn save-event">Create event</button>
+                                <button type="button" class="btn btn-danger btn-lg delete-event" data-dismiss="modal">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="add_event" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content modal-md">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Visit</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form method="post" novalidate>
+                    <div class="modal-body">
+                        <div class="form-group mb-2">
+                            <label asp-for="VisitDateTime" class="control-label">Visit Date</label>
+                            <input asp-for="VisitDateTime" class="form-control" />
+                            <span asp-validation-for="VisitDateTime" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label asp-for="Note" class="control-label">Notes</label>
+                            <input asp-for="Note" class="form-control" />
+                            <span asp-validation-for="Note" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label asp-for="PatientID" class="control-label">Select Patient</label>
+                            <select asp-for="PatientID" class="form-control" asp-items="ViewBag.PatientID"></select>
+                            <span asp-validation-for="PatientID" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label asp-for="UserId" class="control-label">Created By</label>
+                            <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                            <span asp-validation-for="UserId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-primary submit-btn save-event">Create event</button>
+                        <button type="button" class="btn btn-danger btn-lg delete-event" data-dismiss="modal">Delete</button>
+                    </div>
+                </form>
+                </<div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+    <script src="~/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.slimscroll.js"></script>
+    <script src="~/assets/js/select2.min.js"></script>
+    <script src="~/assets/js/moment.min.js"></script>
+    <script src="~/assets/js/jquery-ui.min.html"></script>
+    <script src="~/assets/js/fullcalendar.min.js"></script>
+    <script src="~/assets/js/jquery.fullcalendar.js"></script>
+    <script src="~/assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/assets/js/app.js"></script>
+</body>
+</html>
+

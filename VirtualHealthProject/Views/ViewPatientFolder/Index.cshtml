@@ -1,0 +1,104 @@
+﻿@using VirtualHealthProject.Models
+@model IEnumerable<VirtualHealthProject.Models.PatientViewModel>
+@{
+    ViewData["Title"] = "Patients";
+    Layout = "_DoctorLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Patients</title>
+</head>
+<body>
+    <div class="box-heading">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+
+
+    <style>
+        html, body {
+            height: auto; /* or 100% */
+            overflow: auto;
+        }
+
+        .box-heading {
+            padding: 10px;
+            margin: 20px 0;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .box-heading h1 {
+                margin: 0;
+                font-size: 1.5em;
+                color: #333;
+                text-align: center;
+            }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .table th {
+                background-color: #f4f4f4;
+            }
+
+        .summary {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 2px solid #ddd;
+            font-weight: bold;
+        }
+    </style>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>PatientID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var patient in Model)
+            {
+                <tr>
+                    <td>@patient.PatientID</td>
+                    <td>@patient.FirstName</td>
+                    <td>@patient.LastName</td>
+                    <td>@patient.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                    <td>@patient.Gender</td>
+                    <td>@patient.ContactNumber</td>
+                    <td>@patient.Email</td>
+                    <td>
+                        <a href="@Url.Action("ViewPatientFolder", "ViewPatientFolder", new { id = patient.PatientID })" class="btn btn-outline-primary">
+                            <i class="fa fa-folder" aria-hidden="true"></i> View Folder
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="@Url.Action("Create", "PatientFolder")" class="btn btn-primary">Add New Patient</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

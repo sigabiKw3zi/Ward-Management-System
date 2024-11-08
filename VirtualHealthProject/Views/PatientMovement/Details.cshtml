@@ -1,0 +1,31 @@
+﻿@model VirtualHealthProject.Models.PatientMovementViewModel
+
+@{
+    ViewData["Title"] = "Patient Movements";
+    Layout = "_WardAdminLayout";
+}
+<div class="form-container">
+    <h2>PatientMovement Details</h2>
+
+
+    <div class="patient-info">
+        <p>MovementID: @Model.PatientMovementID</p>
+        <p>PatientID: @Model.SelectedPatientID</p>
+        <p>Movement: @Model.Movement</p>
+        <p>Movement Time: @Model.MovementTime.ToString("g")</p> <!-- General date/time format -->
+        <p>
+            Return Time:
+            @if (Model.ReturnTime.HasValue)
+            {
+                @Model.ReturnTime.Value.ToString("yyyy-MM-dd")
+            }
+            else
+            {
+                <span>No Return Time</span>
+            }
+        </p>
+    </div>
+
+    <a href="@Url.Action("Index")">Back to List</a>
+</div>
+

@@ -1,0 +1,69 @@
+﻿@model VirtualHealthProject.Models.RequestConsumables
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_StockManagerLayout"; // Set the layout
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Delete Request Consumables</h1>
+
+    <h3 class="text-danger">Are you sure you want to delete this?</h3>
+    <hr />
+
+    <div>
+        <h4>Request Consumables Details</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ConsumableName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ConsumableName)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.RequestDate)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" method="post" onsubmit="return confirmDelete()">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="alert alert-warning text-center">
+                <strong>Warning!</strong> This action cannot be undone.
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                <a class="btn btn-secondary btn-back" asp-action="Index">Back to List</a>
+            </div>
+        </form>
+
+        <script>
+            function confirmDelete() {
+                return confirm("Are you sure you want to delete this request consumable?");
+            }
+        </script>
+    </div>
+</div>

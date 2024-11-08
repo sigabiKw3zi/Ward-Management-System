@@ -1,0 +1,155 @@
+﻿@model VirtualHealthProject.Models.ReferralLetter
+
+@{
+    ViewBag.Title = "Referral Letter Form";
+    Layout = "_DoctorLayout";
+}
+
+<style> 
+
+    .body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+
+    h3 {
+        color: #555;
+    }
+        .doctor-info p {
+          color: #888;
+            margin: 0; /* Remove margin to avoid spacing */
+            line-height: 1.5;
+           text-align: center; /* Adjust line height for readability */
+        }
+
+    .form-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 800px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+    .error-message {
+        color: red;
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+
+    .form-container h3 {
+        margin-top: 40px;
+    }
+
+    input[type="file"] {
+        margin-top: 30px;
+    }
+
+    .validation-error {
+        color: red;
+       
+    }
+
+</style>
+
+<div class="form-container">
+    <div class="doctor-info">
+  <h2>Referral Letter</h2>
+    <p>@ViewBag.DoctorName</p>
+    <p>@ViewBag.DoctorContact</p>
+    <p> @ViewBag.DoctorEmail</p>
+    <p> @ViewBag.DoctorAddress</p>
+
+  @using (Html.BeginForm("Create", "Referral", FormMethod.Post))
+  {
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h3>Patient Information</h3>
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName)
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "validation-error" })
+
+
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName)
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "validation-error" })
+
+        @Html.LabelFor(m => m.DateOfBirth)
+        @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new { @type = "date" })
+                @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "validation-error" })
+
+        @Html.LabelFor(m => m.ContactNumber)
+        @Html.TextBoxFor(m => m.ContactNumber, new { @placeholder = "XXX-XXX-XXXX" })
+                @Html.ValidationMessageFor(m => m.ContactNumber, "", new { @class = "validation-error" })
+    </div>
+
+    <div>
+        <h3>Referral Details</h3>
+        @Html.LabelFor(m => m.PrimaryConcern)
+        @Html.TextBoxFor(m => m.PrimaryConcern)
+                @Html.ValidationMessageFor(m => m.PrimaryConcern, "", new { @class = "validation-error" })
+
+        @Html.LabelFor(m => m.CurrentMedications)
+        @Html.TextAreaFor(m => m.CurrentMedications)
+
+    </div>
+      <div>
+        <h3>Appointment Details</h3>
+        @Html.LabelFor(m => m.AppointmentDate)
+        @Html.TextBoxFor(m => m.AppointmentDate, "{0:yyyy-MM-dd}", new { @type = "date" })
+                @Html.ValidationMessageFor(m => m.AppointmentDate, "", new { @class = "validation-error" })
+
+        @Html.LabelFor(m => m.AppointmentTime)
+        @Html.TextBoxFor(m => m.AppointmentTime, new { @type = "time" })
+                @Html.ValidationMessageFor(m => m.AppointmentTime, "", new { @class = "validation-error" })
+
+    </div>
+
+
+    <input type="submit" value="Submit Referral" />
+}

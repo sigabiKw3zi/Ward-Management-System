@@ -1,0 +1,22 @@
+﻿@model VirtualHealthProject.Models.BedViewModel
+@{
+    ViewData["Title"] = "Bed Allocation";
+    Layout = "_WardAdminLayout";
+
+}
+<div class="form-container">
+    <h2>BedAllocation Details</h2>
+
+
+    <div class="patient-info">
+        <p>RoomNumber: @Model.RoomNumber</p>
+        <p>BedID: @Model.BedID</p>
+        <p>Availability Status: @Model.IsOccupied</p>
+        <p>Allocated To: @Model.AllocatedTo</p>
+        <p>AllocationDate: @Model.AllocationDate.Value.ToString("yyyy-MM-dd")</p>
+       
+    </div>
+
+    <a href="@Url.Action("Index")">Back to List</a>
+</div>
+

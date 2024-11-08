@@ -1,0 +1,60 @@
+﻿@model VirtualHealthProject.ViewModels.DischargeViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_DoctorLayout";
+}
+
+<h4 class="text-center">Create Discharge</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div class="card-box">
+            <h4 class="card-title">Discharge Form</h4>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="DischargeDate" class="control-label">Discharge Date</label>
+                    <input asp-for="DischargeDate" class="form-control" type="date" />
+                    <span asp-validation-for="DischargeDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="DischargeStatus" class="control-label">Discharge Status</label>
+                    <input asp-for="DischargeStatus" value="Pending" class="form-control" readonly />
+                    <span asp-validation-for="DischargeStatus" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="PatientId">Select Patient</label>
+                    <select asp-for="PatientId" class="form-control" asp-items="Model.Patients"></select>
+                    <span asp-validation-for="PatientId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="UserId"></label>
+                    <select asp-for="UserId" asp-items="Model.Users" class="form-control"></select>
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="CreatedDate" class="control-label">Created Date</label>
+                    <input asp-for="CreatedDate" class="form-control" type="date" />
+                    <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                </div>
+
+                <div class="text-right mb-2 d-inline">
+                    <input type="submit" value="Create" class="btn btn-primary me-2" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

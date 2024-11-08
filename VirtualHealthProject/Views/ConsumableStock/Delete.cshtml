@@ -1,0 +1,90 @@
+﻿@model VirtualHealthProject.Models.ConsumableStockLevels
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_StockManagerLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Consumable Stock Level</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .container {
+            max-width: 800px;
+        }
+
+        .btn-back {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Delete Consumable Stock Level</h1>
+
+        <h3 class="text-danger">Are you sure you want to delete this?</h3>
+        <hr />
+
+        <div>
+            <h4>Consumable Stock Level Details</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.StockLevel)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.StockLevel)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ReorderLevel)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ReorderLevel)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ExpirationDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ExpirationDate)
+                </dd>
+            </dl>
+
+            <form asp-action="Delete" method="post" onsubmit="return confirmDelete()">
+                <input type="hidden" asp-for="ConsumableId" />
+
+                <div class="alert alert-warning text-center">
+                    <strong>Warning!</strong> This action cannot be undone.
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a class="btn btn-secondary btn-back" asp-action="Index">Back to List</a>
+                </div>
+            </form>
+
+            <script>
+                function confirmDelete() {
+                    return confirm("Are you sure you want to delete this consumable stock level?");
+                }
+            </script>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

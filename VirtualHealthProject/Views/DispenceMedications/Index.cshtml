@@ -1,0 +1,84 @@
+﻿@model IEnumerable<VirtualHealthProject.Models.DispenceMedication>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_PharmacyLayout";
+}
+
+<div class="container-fluid mt-4 position-relative">
+    <!-- Page Heading and Create Button -->
+    <div class="d-flex justify-content-center mb-4 position-relative">
+        <h1 class="mb-4 text-center">Dispense Medication</h1>
+    </div>
+
+    <div class="d-flex justify-content-between mb-4">
+        <p>
+            <a class="btn btn-primary" asp-action="Create">Create New Medication</a>
+        </p>
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchDispenseMedications()">
+           
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover w-100">
+            <thead class="thead-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                    <th>@Html.DisplayNameFor(model => model.DateTime)</th>
+                    <th>@Html.DisplayNameFor(model => model.MedicineName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+                    <th>@Html.DisplayNameFor(model => model.Notes)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="dispenseMedicationTableBody">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DateTime)</td>
+                        <td>@Html.DisplayFor(modelItem => item.MedicineName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Notes)</td>
+                        <td>
+                            <a class="btn btn-sm btn-info" asp-action="Edit" asp-route-id="@item.DispenceId">Edit</a>
+                            <a class="btn btn-sm btn-outline-success" asp-action="Details" asp-route-id="@item.DispenceId">Details</a>
+                            <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.DispenceId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function searchDispenseMedications() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const table = document.getElementById('dispenseMedicationTableBody');
+        const rows = table.getElementsByTagName('tr');
+
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName('td');
+            let rowContainsSearchTerm = false;
+
+            for (let j = 0; j < cells.length - 1; j++) { // -1 to skip the actions column
+                const cell = cells[j];
+                if (cell) {
+                    const txtValue = cell.textContent || cell.innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        rowContainsSearchTerm = true;
+                        break; // Exit the inner loop if a match is found
+                    }
+                }
+            }
+
+            rows[i].style.display = rowContainsSearchTerm ? "" : "none";
+        }
+    }
+</script>

@@ -1,0 +1,89 @@
+﻿@model VirtualHealthProject.Models.RequestConsumables
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_StockManagerLayout"; // Set the layout
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Request Consumables</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Edit Request Consumables</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Consumable Request Information</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="ConsumableName" class="control-label"></label>
+                            <input asp-for="ConsumableName" class="form-control" />
+                            <span asp-validation-for="ConsumableName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="Quantity" class="control-label"></label>
+                            <input asp-for="Quantity" class="form-control" />
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="RequestDate" class="control-label"></label>
+                            <input asp-for="RequestDate" type="date" class="form-control" />
+                            <span asp-validation-for="RequestDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="Status" class="control-label"></label>
+                            <select asp-for="Status" class="form-control">
+                                <option value="">Select Status</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Notes" class="control-label"></label>
+                        <input asp-for="Notes" class="form-control" />
+                        <span asp-validation-for="Notes" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a class="btn btn-secondary ml-2" asp-action="Index">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

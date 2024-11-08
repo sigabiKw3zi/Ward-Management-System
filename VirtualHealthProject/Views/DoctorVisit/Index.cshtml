@@ -1,0 +1,68 @@
+﻿@model IEnumerable<VirtualHealthProject.Models.DoctorVisit>
+
+@{
+    Layout = "_NurseLayout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Recorded Doctor - Patient Visit</title>
+</head>
+<body>
+    <p>
+        <a asp-controller="DoctorVisit" asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScheduledMedication)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScheduleIVMedication)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScheduleVMedication)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ChronicConditionsStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ChronicConditions)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ScheduledMedication)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ScheduleIVMedication)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ScheduleVMedication)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChronicConditionsStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChronicConditions)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.VisitId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.VisitId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.VisitId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

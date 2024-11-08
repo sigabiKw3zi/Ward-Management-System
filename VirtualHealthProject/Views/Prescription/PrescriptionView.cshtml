@@ -1,0 +1,41 @@
+﻿@model List<VirtualHealthProject.Models.Prescription>
+
+@{
+    ViewData["Title"] = "Prescription";
+    Layout = "_NurseLayout";
+}
+
+<h2>Prescription List</h2>
+
+@if (Model.Count > 0)
+{
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+        @foreach (var prescription in Model)
+        {
+            <ul style="border: 1px solid #ccc; padding: 15px; list-style-type: none; width: 100%; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);">
+                <li><strong>Patient ID:</strong> @prescription.PatientId</li>
+                <li><strong>First Name:</strong> @prescription.FirstName</li>
+                <li><strong>Last Name:</strong> @prescription.LastName</li>
+                <li><strong>DOB:</strong> @prescription.DOB.ToShortDateString()</li>
+                <li><strong>Date Recorded:</strong> @prescription.DateRecorded.ToShortDateString()</li>
+                <li><strong>Rx:</strong> @prescription.Rx</li>
+                <li><strong>Sig (Dosage):</strong> @prescription.Sig</li>
+                <li><strong>Dispense:</strong> @prescription.Dispense</li>
+                <li><strong>Rf (Refill):</strong> @prescription.Rf</li>
+                <li><strong>Expiry Date:</strong> @prescription.ExpDate</li>
+                <li><strong>Signature & Rank:</strong> @prescription.Notes</li>
+            </ul>
+
+            <br />
+            <!-- Download PDF Button -->
+            <form asp-action="DownloadPrescriptionPdf" method="post">
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Download Prescription PDF</button>
+            </form>
+        }
+    </div>
+}
+else
+{
+    <p>No prescriptions available.</p>
+}
+

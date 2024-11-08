@@ -1,0 +1,53 @@
+﻿@model VirtualHealthProject.ViewModels.PatientVisitViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_DoctorLayout";
+}
+
+
+<h4 class="text-center">Create Patient Visit</h4>
+<hr />
+<div class="row py-5">
+    <div class="col-md-12">
+        <div class="card-box">
+            <h4 class="card-title">Patient Visit Form</h4>
+            <form asp-action="Create" method="post">
+                <div class="form-group mb-2">
+                    <label asp-for="VisitDateTime" class="control-label">Visit Date</label>
+                    <input asp-for="VisitDateTime" class="form-control" type="datetime-local" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="PatientID" class="control-label">Patient</label>
+                    <select asp-for="PatientID" class="form-control" asp-items="Model.Patients"></select>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="UserId"></label>
+                    <select asp-for="UserId" asp-items="Model.Users" class="form-control"></select>
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label asp-for="Note" class="control-label">Note</label>
+                    <textarea asp-for="Note" class="form-control"></textarea>
+                </div>
+
+                <div class="d-inline mb-2">
+                    <button type="submit" value="Create" class="btn btn-primary me-2">Save</button>
+                    <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

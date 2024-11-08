@@ -1,0 +1,20 @@
+﻿@model VirtualHealthProject.Models.AdmissionViewModel
+
+@{
+    ViewBag.Title = "Details for admission";
+    Layout = "_WardAdminLayout";
+}
+<div class="form-container">
+    <h2>Admission Details</h2>
+
+
+    <div class="patient-info">
+        <p>PatientID: @Model.PatientID</p>
+        <p>PatientName: @Model.PatientName</p>
+        <p>AdmissionDate: @Model.AdmissionDate.ToString("yyyy-MM-dd")</p>
+        <p>Admission Status: @Model.Status</p>
+    </div>
+
+    <a href="@Url.Action("Index")">Back to List</a>
+</div>
+

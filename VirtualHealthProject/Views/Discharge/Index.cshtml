@@ -1,0 +1,149 @@
+﻿@model IEnumerable<VirtualHealthProject.Models.Discharge>
+
+@{
+    ViewData["Title"] = "Discharge Requests";
+    Layout = "_wardAdminLayout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discharge Submissions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="box-heading">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+
+    <style>
+        .box-heading {
+            padding: 10px;
+            margin: 20px 0;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .box-heading h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #f4f4f4;
+        }
+
+        .summary {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 2px solid #ddd;
+            font-weight: bold;
+        }
+    </style>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchDischarges()">
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DischargeDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DischargeStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient) 
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User) 
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="dischargeTableBody">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DischargeDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DischargeStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Patient.FirstName) @Html.DisplayFor(modelItem => item.Patient.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName) 
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-info me-2" asp-action="ChangeStatus" asp-route-id="@item.DischargeId">Discharge</a>
+                            <a class="btn btn-sm btn-outline-success me-2" asp-action="Details" asp-route-id="@item.DischargeId">Details</a>
+                           @*  <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.DischargeId">Delete</a> *@
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">No data available</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script>
+        function searchDischarges() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('dischargeTableBody');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let rowContainsSearchTerm = false;
+
+                for (let j = 0; j < cells.length - 1; j++) { // -1 to skip the actions column
+                    const cell = cells[j];
+                    if (cell) {
+                        const txtValue = cell.textContent || cell.innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            rowContainsSearchTerm = true;
+                            break; // Exit the inner loop if a match is found
+                        }
+                    }
+                }
+
+                rows[i].style.display = rowContainsSearchTerm ? "" : "none";
+            }
+        }
+    </script>
+</body>
+</html>

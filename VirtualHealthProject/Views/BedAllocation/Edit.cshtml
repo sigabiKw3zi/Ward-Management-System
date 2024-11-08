@@ -1,0 +1,34 @@
+﻿@model VirtualHealthProject.Models.BedAllocationViewModel
+@{
+    ViewData["Title"] = "Bed Allocation";
+    Layout = "_WardAdminLayout";
+ 
+}
+
+<h2>Edit Patient Allocation</h2>
+
+<form method="post" asp-action="Edit">
+    <input type="hidden" asp-for="AllocationID" /> <!-- Include a hidden field for the Allocation ID -->
+    <input type="hidden" asp-for="RoomNumber" />
+    <input type="hidden" asp-for="BedID" />
+
+    <div class="form-group">
+        <label asp-for="SelectedPatientID">Allocate To</label>
+        <select asp-for="SelectedPatientID" class="form-control" asp-items="Model.PatientOptions">
+            <option value="">Select a Patient</option>
+        </select>
+        <span asp-validation-for="SelectedPatientID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AllocationDate"></label>
+        <input asp-for="AllocationDate" class="form-control" type="date" />
+        <span asp-validation-for="AllocationDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save Changes" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+ 

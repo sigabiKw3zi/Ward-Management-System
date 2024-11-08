@@ -1,0 +1,180 @@
+﻿@model IEnumerable<VirtualHealthProject.Models.PrescriptionScript>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_DoctorLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Box Heading</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="box-heading">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+
+
+    <style>
+        .box-heading {
+            padding: 10px;
+            margin: 20px 0;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .box-heading h1 {
+                margin: 0;
+                font-size: 1.5em;
+                color: #333;
+                text-align: center;
+            }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .table th {
+                background-color: #f4f4f4;
+            }
+
+        .summary {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 2px solid #ddd;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="d-flex justify-content-between mb-2">
+        <div class="d-flex justify content-end mb-2">
+            <a class="btn btn-primary" asp-action="Create">
+                Create New
+            </a>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchUsers()">
+        </div>
+    </div>
+    <p>
+
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medication)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dosage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateWritten)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateForwardedToPharmacy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateDeliveredToWard)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="prescriptTableBody">
+            @if (Model != null && Model.Any())
+            {
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PatientID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Medication)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Dosage)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateWritten)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateForwardedToPharmacy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateDeliveredToWard)
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-info me-2" asp-action="Edit" asp-route-id="@item.PrescriptionID">Edit</a> 
+                            <a class="btn btn-sm btn-outline-success me-2" asp-action="Details" asp-route-id="@item.PrescriptionID">Details</a> 
+                            <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.PrescriptionID">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">No data available</td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+    <script>
+        function searchEmployees() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('prescriptTableBody');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let rowContainsSearchTerm = false;
+
+                for (let j = 0; j < cells.length - 1; j++) { // -1 to skip the actions column
+                    const cell = cells[j];
+                    if (cell) {
+                        const txtValue = cell.textContent || cell.innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            rowContainsSearchTerm = true;
+                            break; // Exit the inner loop if a match is found
+                        }
+                    }
+                }
+
+                rows[i].style.display = rowContainsSearchTerm ? "" : "none";
+            }
+        }
+    </script>
+</body>
+</html>

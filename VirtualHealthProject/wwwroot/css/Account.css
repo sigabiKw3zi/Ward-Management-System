@@ -1,0 +1,63 @@
+﻿.Account-container {
+    background-image:url('../Image/download.jpeg');
+    background-size:cover;
+    background-position:center;
+    background-repeat:repeat-y;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:2rem 0;
+}
+.Account-box{
+    background-color:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+    max-width:500px;
+    width:1000%;
+    opacity:9;
+}
+.body {
+    background-color: lightskyblue;
+    font-family: Arial, sans-serif;
+    color: lightskyblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.avatar-item {
+    text-align: center;
+}
+
+.avatar-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+    .avatar-btn img {
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        object-fit: cover;
+    }
+
+.avatar-name {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
+

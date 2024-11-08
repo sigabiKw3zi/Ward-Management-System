@@ -1,0 +1,160 @@
+﻿@model VirtualHealthProject.Models.DoctorVisit
+
+@{
+    Layout = "_DoctorLayout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .form-container {
+            margin-top: 20px;
+        }
+
+        .form-actions {
+            margin-top: 20px;
+        }
+
+        .styled-button {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container form-container">
+        <h4>Doctor Visit</h4>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form asp-controller="DoctorVisit" asp-action="Edit" method="post">
+
+                    @*  <label for="VisitId">Visit Id:</label>
+                    <input type="number" id="VisitId" name="VisitId" required> *@
+
+                    <!-- Schedule Medication Dropdown -->
+                    <div class="form-group">
+                        <label for="ScheduledMedication">Schedule Medication:</label>
+                        <select id="ScheduledMedication" name="ScheduledMedication" class="form-control" onchange="showMedicationDropdown()">
+                            <option disabled value="">Select Schedule</option>
+                            <option value="ScheduleIV">Schedule IV</option>
+                            <option value="ScheduleV">Schedule V</option>
+                        </select>
+                    </div>
+
+                    <!-- Schedule IV Medication Dropdown -->
+                    <div class="form-group" id="ScheduleIVContainer" style="display: none;">
+                        <label for="ScheduleIVMedication">Schedule IV Medications:</label>
+                        <select id="ScheduleIVMedication" name="ScheduleIVMedication" class="form-control">
+                            <option disabled value="">Select a medication</option>
+                            <option value="Alprazolam">Alprazolam (Xanax)</option>
+                            <option value="Diazepam">Diazepam (Valium)</option>
+                            <option value="Lorazepam">Lorazepam (Ativan)</option>
+                            <option value="Clonazepam">Clonazepam (Klonopin)</option>
+                            <option value="Phenobarbital">Phenobarbital</option>
+                            <option value="Temazepam">Temazepam (Restoril)</option>
+                            <option value="Tramadol">Tramadol (Ultram)</option>
+                            <option value="Carisoprodol">Carisoprodol (Soma)</option>
+                            <option value="Chlordiazepoxide">Chlordiazepoxide (Librium)</option>
+                            <option value="Oxazepam">Oxazepam (Serax)</option>
+                            <option value="Zolpidem">Zolpidem (Ambien)</option>
+                            <option value="Eszopiclone">Eszopiclone (Lunesta)</option>
+                            <option value="Zaleplon">Zaleplon (Sonata)</option>
+                            <option value="Midazolam">Midazolam (Versed)</option>
+                        </select>
+                    </div>
+
+                    <!-- Schedule V Medication Dropdown -->
+                    <div class="form-group" id="ScheduleVContainer" style="display: none;">
+                        <label for="ScheduleVMedication">Schedule V Medications:</label>
+                        <select id="ScheduleVMedication" name="ScheduleVMedication" class="form-control">
+                            <option disabled value="">Select a medication</option>
+                            <option value="Lomotil">Lomotil (Diphenoxylate/Atropine)</option>
+                            <option value="Lyrica">Lyrica (Pregabalin)</option>
+                            <option value="Phenergan with Codeine">Phenergan with Codeine (Promethazine/Codeine)</option>
+                            <option value="Robitussin AC">Robitussin AC (Guaifenesin/Codeine)</option>
+                            <option value="Ezogabine">Ezogabine (Potiga)</option>
+                            <option value="Gabapentin">Gabapentin (Neurontin)</option>
+                            <option value="Motofen">Motofen (Difenoxin/Atropine)</option>
+                            <option value="Parepectolin">Parepectolin (Kaolin/Pectin)</option>
+                            <option value="Acetaminophen with Codeine">Acetaminophen with Codeine (Tylenol with Codeine)</option>
+                            <option value="Opium preparations">Opium preparations (up to 100 mg per 100 mL)</option>
+                            <option value="Loperamide">Loperamide (Imodium)</option>
+                            <option value="Cannabidiol">Cannabidiol (CBD-containing medications like Epidiolex)</option>
+
+                        </select>
+                    </div>
+
+                    <script>
+                        function showMedicationDropdown() {
+                            var selectedSchedule = document.getElementById("ScheduledMedication").value;
+                            document.getElementById("ScheduleIVContainer").style.display = selectedSchedule === "ScheduleIV" ? "block" : "none";
+                            document.getElementById("ScheduleVContainer").style.display = selectedSchedule === "ScheduleV" ? "block" : "none";
+                        }
+                    </script>
+
+                    <!-- Chronic Conditions Dropdown -->
+                    <div class="form-group">
+                        <label for="ChronicConditionsStatus">Any Chronic Conditions?:</label>
+                        <select id="ChronicConditionsStatus" name="ChronicConditionsStatus" class="form-control" onchange="toggleChronicConditions()">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="chronicConditionsContainer" style="display: none;">
+                        <label for="chronicConditions">Chronic Conditions:</label>
+                        <select id="chronicConditions" name="chronicConditions" class="form-control" disabled>
+                            <option disabled value="">Select a condition</option>
+                            <option value="Hypertension">Hypertension</option>
+                            <option value="Diabetes">Diabetes Mellitus</option>
+                            <option value="Asthma">Asthma</option>
+                            <option value="COPD">Chronic Obstructive Pulmonary Disease (COPD)</option>
+                            <option value="Arthritis">Arthritis</option>
+                            <option value="KidneyDisease">Chronic Kidney Disease</option>
+                            <option value="HeartDisease">Heart Disease</option>
+                        </select>
+                    </div>
+
+                    <script>
+                        function toggleChronicConditions() {
+                            const chronicConditionStatus = document.getElementById("ChronicConditionsStatus").value;
+                            const chronicConditionsContainer = document.getElementById("chronicConditionsContainer");
+                            const chronicConditions = document.getElementById("chronicConditions");
+
+                            if (chronicConditionStatus === "Yes") {
+                                chronicConditionsContainer.style.display = "block";
+                                chronicConditions.disabled = false;
+                            } else {
+                                chronicConditionsContainer.style.display = "none";
+                                chronicConditions.disabled = true;
+                                chronicConditions.value = "";
+                            }
+                        }
+                    </script>
+
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success btn-block">Submit</button>
+                        <a asp-action="Index" class="btn btn-info btn-block">View</a>
+                        <a asp-action="Index" class="btn btn-warning btn-block">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

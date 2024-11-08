@@ -1,0 +1,136 @@
+﻿@model IEnumerable<VirtualHealthProject.Models.ReferralLetter>
+@{
+    ViewData["Title"] = "Referral Letters";
+    Layout = "_WardAdminLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Patients</title>
+</head>
+<body>
+    <div class="box-heading">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+
+
+    <style>
+        html, body {
+            height: auto; /* or 100% */
+            overflow: auto;
+        }
+
+        .box-heading {
+            padding: 10px;
+            margin: 20px 0;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .box-heading h1 {
+                margin: 0;
+                font-size: 1.5em;
+                color: #333;
+                text-align: center;
+            }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            .table th {
+                background-color: #f4f4f4;
+            }
+
+        .summary {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 2px solid #ddd;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="search-container">
+        <input type="text" id="searchReferralInput" onkeyup="searchReferralLetters()" placeholder="Search Referral Letters..." class="form-control" />
+    </div>
+    <style>
+        .search-container {
+            display: flex;
+            justify-content: flex-end; /* Align the search bar to the right */
+            margin-bottom: 20px; /* Add some space below */
+        }
+
+            .search-container input {
+                width: 300px; /* Set a custom width */
+            }
+    </style>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Appointment Date</th>
+                <th>Appointment Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="referralLettersTableBody">
+            @foreach (var referral in Model)
+            {
+                <tr>
+                    <td>@referral.FirstName</td>
+                    <td>@referral.LastName</td>
+                    <td>@referral.AppointmentDate.ToString("yyyy-MM-dd")</td>
+                    <td>@referral.AppointmentTime</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-info" asp-action="Edit" asp-route-id="@referral.ReferralID">Edit</a>
+                        <a class="btn btn-sm btn-outline-success" asp-action="Details" asp-route-id="@referral.ReferralID">Details</a>
+                        <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@referral.ReferralID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </body>
+</div>
+
+<script>
+    function searchReferralLetters() {
+        const input = document.getElementById('searchReferralInput'); // Search input field
+        const filter = input.value.toLowerCase(); // Convert search term to lowercase
+        const table = document.getElementById('referralLettersTableBody'); // Referral letters table body
+        const rows = table.getElementsByTagName('tr'); // All rows in the table
+
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName('td'); // All cells in the current row
+            let rowContainsSearchTerm = false;
+
+            // Loop through each cell (skipping actions if applicable)
+            for (let j = 0; j < cells.length; j++) {
+                const cell = cells[j];
+                if (cell) {
+                    const txtValue = cell.textContent || cell.innerText;
+                    // Check if the search term is found in the cell
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        rowContainsSearchTerm = true;
+                        break; // Exit loop if a match is found
+                    }
+                }
+            }
+
+            // Show or hide the row based on whether the search term was found
+            rows[i].style.display = rowContainsSearchTerm ? "" : "none";
+        }
+    }
+</script>

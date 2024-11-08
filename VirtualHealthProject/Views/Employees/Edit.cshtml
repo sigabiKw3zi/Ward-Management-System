@@ -1,0 +1,144 @@
+﻿@model VirtualHealthProject.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_AdminLayout";
+    
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Edit Employee</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Employee Information</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <input type="hidden" asp-for="EmployeeID" />
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="EmpNo" class="control-label"></label>
+                            <input asp-for="EmpNo" class="form-control" />
+                            <span asp-validation-for="EmpNo" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Surname" class="control-label"></label>
+                            <input asp-for="Surname" class="form-control" />
+                            <span asp-validation-for="Surname" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="EmailAddress" class="control-label"></label>
+                            <input asp-for="EmailAddress" class="form-control" />
+                            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Mobile" class="control-label"></label>
+                            <input asp-for="Mobile" class="form-control" />
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="JoinDate" class="control-label"></label>
+                            <input asp-for="JoinDate" type="date" class="form-control" />
+                            <span asp-validation-for="JoinDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Role" class="control-label"></label>
+                            <select asp-for="Role" class="form-control">
+                                <option value="">Select Role</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Script Manager">Script Manager</option>
+                                <option value="Stock Manager">Stock Manager</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Nurse">Nurse</option>
+                                <option value="Ward Admin">Ward Admin</option>
+                            </select>
+                            <span asp-validation-for="Role" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="Address" class="control-label"></label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="CreatedById" class="control-label"></label>
+                            <input asp-for="CreatedById" class="form-control" readonly />
+                            <span asp-validation-for="CreatedById" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="CreatedOn" class="control-label"></label>
+                            <input asp-for="CreatedOn" type="text" class="form-control" readonly />
+                            <span asp-validation-for="CreatedOn" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="ModifiedById" class="control-label"></label>
+                            <input asp-for="ModifiedById" class="form-control" readonly />
+                            <span asp-validation-for="ModifiedById" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="ModifiedOn" class="control-label"></label>
+                            <input asp-for="ModifiedOn" type="text" class="form-control" readonly />
+                            <span asp-validation-for="ModifiedOn" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" asp-action="ListOf" />
+                        <a class="btn btn-secondary ml-2" asp-action="ListOf">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    @* <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script> *@
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   @*  @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    } *@
+</body>
+</html>

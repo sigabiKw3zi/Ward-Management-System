@@ -1,0 +1,56 @@
+﻿@model VirtualHealthProject.Models.ConsumableStockLevels
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_StockManagerLayout";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Create Consumable Stock Level</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Stock Level Information</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="StockLevel" class="control-label"></label>
+                        <input asp-for="StockLevel" class="form-control" />
+                        <span asp-validation-for="StockLevel" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="ReorderLevel" class="control-label"></label>
+                        <input asp-for="ReorderLevel" class="form-control" />
+                        <span asp-validation-for="ReorderLevel" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="ExpirationDate" class="control-label"></label>
+                        <input asp-for="ExpirationDate" type="date" class="form-control" />
+                        <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a class="btn btn-secondary ml-2" asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

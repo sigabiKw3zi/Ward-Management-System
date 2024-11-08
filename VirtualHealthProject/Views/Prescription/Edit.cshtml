@@ -1,0 +1,82 @@
+﻿@model VirtualHealthProject.Models.Prescription
+
+@{
+    ViewData["Title"] = "Record Prescription";
+    Layout = "_NurseLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Prescription</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        /* Your custom styles here */
+    </style>
+</head>
+<body>
+        <h1>Prescription</h1>
+
+        <!-- Patient Number (Auto-incremented, Read-only) -->
+        <label for="Id">Patient Number:</label>
+        <input type="number" id="PatientId" name="PatientId" required>
+
+        <!-- Full Name (Auto-filled, editable if needed) -->
+        <label for="FirstName">First Name:</label>
+        <input type="text" id="FirstName" name="FirstName" required>
+
+        <!-- Full Name (Auto-filled, editable if needed) -->
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" required>
+
+        <!-- Date Of Birth -->
+        <label for="DateOfBirth">Date Of Birth:</label>
+        <input type="date" id="DateOfBirth" name="DateOfBirth" required>
+
+        <!-- Date Recorded -->
+        <label for="AdmissionDate">Date Recorded:</label>
+        <input type="date" id="AdmissionDate" name="AdmissionDate" required>
+
+        <!-- Rx -->
+        <label for="Rx">Rx:</label>
+        <input type="text" id="Rx" name="Rx" required>
+
+        <!-- Sig (Dosage) -->
+        <label for="Sig">Sig (Dosage):</label>
+        <input type="text" id="Sig" name="Sig" required>
+
+        <!-- Dispense -->
+        <label for="Disp">Disp:</label>
+        <input type="text" id="Disp" name="Disp" required>
+
+        <!-- Refill -->
+        <label for="Rf">Rf:</label>
+        <input type="text" id="Rf" name="Rf" required>
+
+        <label for="ExpDate">Expiry Date:</label>
+        <input type="date" id="ExpDate" name="ExpDate" required>
+
+        <label for="Notes">Signature & Rank:</label>
+        <input type="text" id="Notes" name="Notes" required>
+
+        <div style="display: flex; justify-content: space-between; gap: 20px;">
+            <!-- Submit Button -->
+            <ul class="actions" style="margin: 0;">
+                <button type="submit" class="styled-button">Submit</button>
+            </ul>
+
+            <!-- View Button -->
+            <ul class="actions" style="margin: 0;">
+                <a asp-action="Details" class="styled-button" style="text-align: center;">View</a>
+            </ul>
+
+            <!-- Back Button (optional, if needed) -->
+            <ul class="actions" style="margin: 0;">
+                <a asp-action="Index" class="styled-button" style="text-align: end;">Back</a>
+            </ul>
+        </div>
+</body>
+</html>

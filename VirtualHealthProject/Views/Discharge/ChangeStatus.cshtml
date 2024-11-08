@@ -1,0 +1,25 @@
+﻿@model VirtualHealthProject.Models.Discharge
+
+@{
+    ViewData["Title"] = "Change Status";
+    Layout = "_wardAdminLayout";
+}
+
+<h4 class="text-center">Change Discharge Status</h4>
+<hr />
+
+<div class="alert alert-warning">
+    Are you sure you want to change the status from "Pending" to "Discharged"?
+</div>
+
+<form asp-action="ChangeStatus" method="post">
+    <input type="hidden" asp-for="DischargeId" />
+    <div class="text-right mb-2">
+        <button type="submit" class="btn btn-primary">Confirm Change</button>
+    </div>
+</form>
+
+<div class="mb-2">
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</div>
+

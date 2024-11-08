@@ -1,0 +1,51 @@
+﻿@model VirtualHealthProject.Models.Discharge
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_wardAdminLayout";
+}
+<h1>Delete Discharge Details</h1>
+
+<div>
+    <h4>Discharge</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">@Model.DischargeId</dd>
+
+        <dt class="col-sm-2">Patient </dt>
+        <dd class="col-sm-10">@Model.Patient</dd>
+
+        <dt class="col-sm-2">Discharge Status</dt>
+        <dd class="col-sm-10">@Model.DischargeStatus</dd>
+
+        <dt class="col-sm-2">CreatedDate</dt>
+        <dd class="col-sm-10">@Model.CreatedDate</dd>
+
+        <dt class="col-sm-2">DischargeDate</dt>
+        <dd class="col-sm-10">@Model.DischargeDate</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post" onsubmit="return confirmDelete()">
+    <input type="hidden" asp-for="DischargeId" />
+
+    <div class="alert alert-warning text-center">
+        <strong>Warning!</strong> This action cannot be undone.
+    </div>
+
+    <div class="form-group text-center">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-secondary btn-back" asp-action="Index">Back to List</a>
+    </div>
+</form>
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this PatientMovement?");
+    }
+</script>
+
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

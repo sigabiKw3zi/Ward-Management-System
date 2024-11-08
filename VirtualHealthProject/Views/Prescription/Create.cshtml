@@ -1,0 +1,285 @@
+﻿@model VirtualHealthProject.Models.Prescription
+
+@{
+    Layout = "_NurseLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Record Prescription</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Button container for aligning buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Styling for buttons */
+        .styled-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            .styled-button:hover {
+                background-color: #45a049;
+            }
+
+        .actions ul {
+            padding: 0;
+            list-style: none;
+        }
+
+            .actions ul li {
+                display: inline-block;
+            }
+
+        .actions a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <form asp-controller="Prescription" asp-action="PrescriptionView" method="post">
+        <h1>Prescription</h1>
+
+        <!-- Patient Number (Auto-incremented, Read-only) -->
+        <label for="PatientId">Patient Number:</label>
+        <input type="number" id="PatientId" name="PatientId" value="@Model.PatientId" readonly>
+
+        <!-- First Name (Read-only) -->
+        <label for="FirstName">First Name:</label>
+        <input type="text" id="FirstName" name="FirstName" value="@Model.FirstName" readonly>
+
+        <!-- Last Name (Read-only) -->
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" value="@Model.LastName" readonly>
+
+        <!-- Date Of Birth -->
+        <label for="DateOfBirth">Date Of Birth:</label>
+        <input type="date" id="DateOfBirth" name="DateOfBirth" required>
+
+        <!-- Date Recorded -->
+        <label for="AdmissionDate">Date Recorded:</label>
+        <input type="date" id="AdmissionDate" name="AdmissionDate" required>
+
+        <!-- Rx -->
+        <label for="Rx">Rx:</label>
+        <input type="text" id="Rx" name="Rx" required>
+
+        <!-- Sig (Dosage) -->
+        <label for="Sig">Sig (Dosage):</label>
+        <input type="text" id="Sig" name="Sig" required>
+
+        <!-- Dispense -->
+        <label for="Disp">Dispense:</label>
+        <input type="text" id="Disp" name="Disp" required>
+
+        <!-- Refill -->
+        <label for="Rf">Refill:</label>
+        <input type="text" id="Rf" name="Rf" required>
+
+        <!-- Expiry Date -->
+        <label for="ExpDate">Expiry Date:</label>
+        <input type="date" id="ExpDate" name="ExpDate" required>
+
+        <!-- Signature & Rank -->
+        <label for="Notes">Signature & Rank:</label>
+        <input type="text" id="Notes" name="Notes" required>
+
+        <!-- Buttons (Submit, View, Back) -->
+        <div class="button-container">
+            <ul class="actions" style="margin: 0;">
+                <!-- Submit Button -->
+                <button type="submit" class="styled-button">Submit</button>
+            </ul>
+
+            <ul class="actions" style="margin: 0;">
+                <!-- View Button -->
+                <a asp-action="PrescriptionView" class="styled-button">View</a>
+            </ul>
+
+            <ul class="actions" style="margin: 0;">
+                <!-- Back Button -->
+                <a asp-action="DoctorVisit" class="styled-button">Back</a>
+            </ul>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @model VirtualHealthProject.Models.Prescription
+
+@{
+    ViewData["Title"] = "Record Prescription";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Record Prescription</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        /* Your custom styles here */
+    </style>
+</head>
+<body>
+        <h1>Prescription</h1>
+
+        <!-- Patient Number (Auto-incremented, Read-only) -->
+        <label for="Id">Patient Number:</label>
+        <input type="number" id="PatientId" name="PatientId" required>
+
+        <!-- Full Name (Auto-filled, editable if needed) -->
+        <label for="FirstName">First Name:</label>
+        <input type="text" id="FirstName" name="FirstName" required>
+
+        <!-- Full Name (Auto-filled, editable if needed) -->
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" required>
+
+        <!-- Date Of Birth -->
+        <label for="DateOfBirth">Date Of Birth:</label>
+        <input type="date" id="DateOfBirth" name="DateOfBirth" required>
+
+        <!-- Date Recorded -->
+        <label for="AdmissionDate">Date Recorded:</label>
+        <input type="date" id="AdmissionDate" name="AdmissionDate" required>
+
+        <!-- Rx -->
+        <label for="Rx">Rx:</label>
+        <input type="text" id="Rx" name="Rx" required>
+
+        <!-- Sig (Dosage) -->
+        <label for="Sig">Sig (Dosage):</label>
+        <input type="text" id="Sig" name="Sig" required>
+
+        <!-- Dispense -->
+        <label for="Disp">Disp:</label>
+        <input type="text" id="Disp" name="Disp" required>
+
+        <!-- Refill -->
+        <label for="Rf">Rf:</label>
+        <input type="text" id="Rf" name="Rf" required>
+
+        <label for="ExpDate">Expiry Date:</label>
+        <input type="date" id="ExpDate" name="ExpDate" required>
+
+        <label for="Notes">Signature & Rank:</label>
+        <input type="text" id="Notes" name="Notes" required>
+
+        <div style="display: flex; justify-content: space-between; gap: 20px;">
+            <!-- Submit Button -->
+            <ul class="actions" style="margin: 0;">
+                <button type="submit" class="styled-button">Submit</button>
+            </ul>
+
+            <!-- View Button -->
+            <ul class="actions" style="margin: 0;">
+                <a asp-action="Details" class="styled-button" style="text-align: center;">View</a>
+            </ul>
+
+            <!-- Back Button (optional, if needed) -->
+            <ul class="actions" style="margin: 0;">
+                <a asp-action="Index" class="styled-button" style="text-align: end;">Back</a>
+            </ul>
+        </div>
+</body>
+</html>
+ *@

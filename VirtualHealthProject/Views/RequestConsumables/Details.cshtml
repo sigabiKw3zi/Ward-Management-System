@@ -1,0 +1,137 @@
+﻿@model VirtualHealthProject.Models.RequestConsumables
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_StockManagerLayout"; // Set the layout
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Consumables Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .container {
+            max-width: 800px;
+        }
+
+        .btn-print {
+            position: absolute;
+            top: 50px;
+            right: 30px;
+            background-color: darkgreen;
+            color: white;
+            z-index: 999;
+        }
+
+        .btn-back {
+            margin-right: 10px;
+        }
+
+        @@media print {
+            body * {
+                visibility: hidden;
+            }
+
+            .container, .container * {
+                visibility: visible;
+            }
+
+            .container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+
+            .btn-print {
+                display: none;
+            }
+
+            .btn-back, .btn-edit {
+                display: none;
+            }
+
+            h1 {
+                display: none;
+            }
+        }
+
+        body.zoomed {
+            zoom: 1.2; /* Adjust this value for the desired zoom level */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Request Consumables Details</h1>
+
+        <!-- Print Button -->
+        <button onclick="window.print(); setTimeout(resetZoom, 500);" class="btn btn-primary btn-print">
+            <i class="bx bxs-printer" style="color:#01acff"></i>
+            Print Info
+        </button>
+
+        <div>
+            <h4 class="mb-3">Request Consumables Information</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ConsumableName)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ConsumableName)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Notes)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Notes)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.RequestDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.RequestDate)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="mt-4">
+            <a class="btn btn-primary btn-edit" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+            <a class="btn btn-secondary btn-back" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript to zoom page after print -->
+    <script>
+        function resetZoom() {
+            document.body.classList.add('zoomed');
+        }
+
+        window.onafterprint = function() {
+            document.body.classList.add('zoomed');
+        };
+    </script>
+</body>
+</html>

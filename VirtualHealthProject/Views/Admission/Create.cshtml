@@ -1,0 +1,33 @@
+﻿@model VirtualHealthProject.Models.AdmissionViewModel
+
+@{
+    ViewBag.Title = "Admit a patient";
+    Layout = "_WardAdminLayout";
+}
+
+<form asp-action="Create" method="post">
+   <div class="form-group">
+        <label asp-for="SelectedPatientID">Patient</label>
+        <select asp-for="SelectedPatientID" class="form-control" asp-items="Model.PatientOptions">
+            <option value="">Select a Patient</option>
+        </select>
+        <span asp-validation-for="SelectedPatientID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="AdmissionDate">Admission Date</label>
+        <input asp-for="AdmissionDate" class="form-control" type="datetime-local" />
+    </div>
+@* 
+    <div class="form-group">
+        <label asp-for="DoctorID">Doctor</label>
+        <select asp-for="DoctorID" asp-items="Model.Doctors" class="form-control" required>
+            <option value="">Assign a doctor</option>
+        </select>
+        <span asp-validation-for="DoctorID" class="text-danger"></span> 
+    </div>*@
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+
+</form> 

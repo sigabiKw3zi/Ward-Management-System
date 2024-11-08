@@ -1,0 +1,67 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+    .scrollable-container {
+        width: 100%;
+        max-width: 1200px; /* Or whatever max width you want */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        overflow-y: hidden; /* Disable vertical scrolling if not needed */
+        white-space: nowrap; /* Prevent wrapping of child elements */
+    }
+
+</style>
+
+
+
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+                <li class="menu-title">Main</li>
+                <li>
+                    <a asp-controller="Home" asp-action="ConScript">
+                        <i class="fa fa-chart-line"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-controller="ConsumableStock" asp-action="Index">
+                        <i class="fa fa-box"></i> <span>Consumable Stock</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-controller="RequestConsumables" asp-action="Index">
+                        <i class="fa fa-hand-holding"></i> <span>Request Consumable</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-controller="WeeklyStockTakes" asp-action="Index">
+                        <i class="fa fa-calendar"></i> <span>Weekly Stock Take</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a asp-controller="InventoryHistories" asp-action="Index">
+                        <i class="fa fa-history"></i> <span>Inventory History</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="chat.html">
+                        <i class="fa fa-comments"></i> <span>Chat</span> <span class="badge badge-pill bg-primary float-right">1</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="settings.html">
+                        <i class="fa fa-cog"></i> <span>Settings</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>

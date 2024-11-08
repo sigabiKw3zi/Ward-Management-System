@@ -1,0 +1,61 @@
+﻿@model VirtualHealthProject.Models.BedAllocationViewModel
+@{
+    ViewData["Title"] = "Bed Allocation";
+    Layout = "_WardAdminLayout";
+
+}
+
+<style>
+    html, body {
+        height: auto; /* or 100% */
+        overflow: auto;
+    }
+
+</style>
+<h2>Allocate Patient to a Bed</h2>
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label>Room Number</label>
+        <select asp-for="RoomID" class="form-control" onchange="this.form.submit()">
+            <option value="">Select a Room</option>
+            @foreach (var room in Model.RoomOptions)
+            {
+                <option value="@room.Value">@room.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Select Bed ID</label>
+        <select asp-for="SelectedBedID" class="form-control">
+            <option value="">Select a Bed</option>
+            @foreach (var bed in Model.BedOptions)
+            {
+                <option value="@bed.Value">@bed.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedPatientID">Allocate To</label>
+        <select asp-for="SelectedPatientID" class="form-control" asp-items="Model.PatientOptions">
+            <option value="">Select a Patient</option>
+        </select>
+        <span asp-validation-for="SelectedPatientID" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="AllocationDate"></label>
+        <input asp-for="AllocationDate" class="form-control" type="date" />
+        <span asp-validation-for="AllocationDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Allocate" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+
+
+

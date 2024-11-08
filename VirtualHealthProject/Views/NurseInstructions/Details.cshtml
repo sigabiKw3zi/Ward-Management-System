@@ -1,0 +1,121 @@
+﻿@model VirtualHealthProject.ViewModels.InstructionViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_DoctorLayout";
+
+    // Find the user's name based on the selected UserId
+    var selectedUser = Model.Users.FirstOrDefault(u => u.Value == Model.UserId);
+    var userName = selectedUser != null ? selectedUser.Text : "Unknown User";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Instruction</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Patient)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Patient.FirstName, Model.Patient.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RemarkDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RemarkDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @userName
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.InstructionId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+
+
+@* @model VirtualHealthProject.ViewModels.InstructionViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_DoctorLayout";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Instruction</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Patients)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Patient)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RemarkDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RemarkDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Users)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Users)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.InstructionId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div> *@
+

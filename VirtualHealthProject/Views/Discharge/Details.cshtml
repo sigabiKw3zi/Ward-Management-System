@@ -1,0 +1,20 @@
+﻿@model VirtualHealthProject.Models.Discharge
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_wardAdminLayout";
+}
+<div class="form-container">
+    <h2>Discharge Details</h2>
+
+
+    <div class="patient-info">
+        <p>User: @Model.UserId</p>
+        <p>PatientName: @Model.PatientID</p>
+        <p>DischargeDate: @Model.DischargeDate.ToString("yyyy-MM-dd")</p>
+        <p>Discharge Status: @Model.DischargeStatus</p>
+        <p>CreatedDate: @Model.CreatedDate.ToString("yyyy-MM-dd")</p>
+    </div>
+
+    <a href="@Url.Action("Index")">Back to List</a>
+</div>

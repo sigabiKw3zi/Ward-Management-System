@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_WardAdminLayout";
+ }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="path/to/your/styles.css"> <!-- Your CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg1"><i class="fa fa-folder" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>10</h3>
+                    <span class="widget-title1">Patient Folders <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg2"><i class="fa fa-bed" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>40</h3>
+                    <span class="widget-title2">Total Beds <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg3"><i class="fa fa-bed" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>3</h3>
+                    <span class="widget-title3">Occupied Beds <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg4"><i class="fa fa-users" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>3</h3>
+                    <span class="widget-title4">Patient Admissions <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Patient Movements</h4>
+                        <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% Higher than Last Month</span>
+                    </div>
+                    <canvas id="movementGraph" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Admissions Overview</h4>
+                        <div class="float-right">
+                            <ul class="chat-user-total">
+                                <li><i class="fa fa-circle current-users" aria-hidden="true"></i> New Admissions</li>
+                                <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Discharges</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <canvas id="admissionsGraph" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Patient Movements Chart
+        const ctxMovement = document.getElementById('movementGraph').getContext('2d');
+        const movementChart = new Chart(ctxMovement, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Patient Movements',
+                    data: [12, 19, 10, 15], // Dummy data
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Admissions Overview Chart
+        const ctxAdmissions = document.getElementById('admissionsGraph').getContext('2d');
+        const admissionsChart = new Chart(ctxAdmissions, {
+            type: 'bar',
+            data: {
+                labels: ['New Admissions', 'Discharges'],
+                datasets: [{
+                    label: 'Patient Admissions',
+                    data: [50, 30], // Dummy data
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
+

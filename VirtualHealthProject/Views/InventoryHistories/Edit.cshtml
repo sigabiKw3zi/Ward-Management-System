@@ -1,0 +1,83 @@
+﻿@model VirtualHealthProject.Models.InventoryHistory
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_StockManagerLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Inventory History</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Edit Inventory History</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Inventory Movement Information</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <input type="hidden" asp-for="InventoryHistoryId" />
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="ConsumableId" class="control-label"></label>
+                            <input asp-for="ConsumableId" class="form-control" />
+                            <span asp-validation-for="ConsumableId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="MovementType" class="control-label"></label>
+                            <input asp-for="MovementType" class="form-control" />
+                            <span asp-validation-for="MovementType" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Quantity" class="control-label"></label>
+                            <input asp-for="Quantity" class="form-control" />
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="MovementDate" class="control-label"></label>
+                            <input asp-for="MovementDate" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="MovementDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Notes" class="control-label"></label>
+                        <input asp-for="Notes" class="form-control" />
+                        <span asp-validation-for="Notes" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a class="btn btn-secondary ml-2" asp-action="Index">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

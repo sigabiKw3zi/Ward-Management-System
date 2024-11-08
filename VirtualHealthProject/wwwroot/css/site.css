@@ -1,0 +1,34 @@
+html {
+    font-size: 14px;
+    background-color: #f8f8f8; /* Off-white background */
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #f8f8f8; /* Ensure the body also has the off-white background */
+}
+
+/* Taskbar or navbar styling */
+.taskbar, .navbar {
+    background-color: #add8e6; /* Light blue background */
+    color: #000; /* Optional: Change text color to black for contrast */
+}
+.bg-light-blue {
+    background-color: #ADD8E6; /* Light Blue */
+}
+

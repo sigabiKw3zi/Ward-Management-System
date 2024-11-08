@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = " Script Dashboard";
+    Layout = "_PharmacyLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacist Dashboard</title>
+    <link rel="stylesheet" href="path/to/your/styles.css"> <!-- Your CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Pharmacist Dashboard Widgets -->
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg1"><i class="fa fa-prescription-bottle-alt" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>150</h3> <!-- Prescriptions Filled -->
+                    <span class="widget-title1">Prescriptions Filled <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg2"><i class="fa fa-pills" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>120</h3> <!-- Medications in Stock -->
+                    <span class="widget-title2">Available Medications <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg3"><i class="fa fa-calendar-alt" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>5</h3> <!-- Upcoming Restocks -->
+                    <span class="widget-title3">Upcoming Restocks <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg4"><i class="fa fa-dollar-sign" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>$9,500</h3> <!-- Total Medication Costs -->
+                    <span class="widget-title4">Medication Costs <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Prescriptions Overview</h4>
+                        <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 12% Higher than Last Month</span>
+                    </div>
+                    <canvas id="prescriptionsGraph" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Medication Stock Overview</h4>
+                        <div class="float-right">
+                            <ul class="chat-user-total">
+                                <li><i class="fa fa-circle current-users" aria-hidden="true"></i> In Stock</li>
+                                <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Low Stock</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <canvas id="medicationStockGraph" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Charts -->
+    <script>
+        // Prescriptions Overview Chart
+        const ctxPrescriptions = document.getElementById('prescriptionsGraph').getContext('2d');
+        const prescriptionsChart = new Chart(ctxPrescriptions, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Prescriptions Filled',
+                    data: [35, 40, 45, 30], // Dummy data
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Medication Stock Overview Chart
+        const ctxMedicationStock = document.getElementById('medicationStockGraph').getContext('2d');
+        const medicationStockChart = new Chart(ctxMedicationStock, {
+            type: 'doughnut',
+            data: {
+                labels: ['In Stock', 'Low Stock'],
+                datasets: [{
+                    label: 'Medication Stock',
+                    data: [100, 20], // Dummy data
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'right',
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

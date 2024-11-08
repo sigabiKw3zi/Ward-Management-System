@@ -1,0 +1,45 @@
+﻿@model VirtualHealthProject.Models.PatientMovementViewModel
+
+@{
+    ViewData["Title"] = "Create Patient Movement";
+    Layout = "_WardAdminLayout";
+}
+
+<form method="post" asp-action="Edit">
+    <input type="hidden" asp-for="PatientMovementID" />
+
+    <div class="form-group">
+        <label asp-for="SelectedPatientID" class="control-label"></label>
+        <select asp-for="SelectedPatientID" class="form-control" asp-items="Model.PatientOptions">
+            <option value="">Select a patient</option>
+        </select>
+        <span asp-validation-for="SelectedPatientID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Movement" class="control-label"></label>
+        <input asp-for="Movement" class="form-control" />
+        <span asp-validation-for="Movement" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MovementTime" class="control-label"></label>
+        <input asp-for="MovementTime" class="form-control" type="datetime-local" />
+        <span asp-validation-for="MovementTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReturnTime" class="control-label"></label>
+        <input asp-for="ReturnTime" class="form-control" type="datetime-local" />
+        <span asp-validation-for="ReturnTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

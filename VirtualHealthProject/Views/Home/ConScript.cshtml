@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "Consumable And Script Dashboard";
+    Layout = "_StockManagerLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Manager Dashboard</title>
+    <link rel="stylesheet" href="path/to/your/styles.css"> <!-- Your CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Stock Manager Dashboard Widgets -->
+    <div class="row">
+        <a asp-controller="ConsumableStock" asp-action="Index">
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg1"><i class="fa fa-pills" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>1000</h3> <!-- Available Stock Items -->
+                    <span class="widget-title1">Consumable  <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        </a>
+
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg2"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>5</h3> <!-- Low Stock Items -->
+                    <span class="widget-title2">Low Stock Items <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg3"><i class="fa fa-truck" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>10</h3> <!-- Recent Stock Orders -->
+                    <span class="widget-title3">Recent Stock Orders <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg4"><i class="fa fa-dollar-sign" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>$12,000</h3> <!-- Total Stock Value -->
+                    <span class="widget-title4">Total Stock Value <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Stock Levels Overview</h4>
+                        <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 8% Higher than Last Month</span>
+                    </div>
+                    <canvas id="stockLevelGraph" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Stock Orders Overview</h4>
+                        <div class="float-right">
+                            <ul class="chat-user-total">
+                                <li><i class="fa fa-circle current-users" aria-hidden="true"></i> Delivered</li>
+                                <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Pending</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <canvas id="stockOrdersGraph" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Charts -->
+    <script>
+        // Stock Levels Chart
+        const ctxStockLevel = document.getElementById('stockLevelGraph').getContext('2d');
+        const stockLevelChart = new Chart(ctxStockLevel, {
+            type: 'bar',
+            data: {
+                labels: ['Antibiotics', 'Painkillers', 'Bandages', 'Syringes'],
+                datasets: [{
+                    label: 'Stock Levels',
+                    data: [50, 30, 20, 100], // Dummy data for each category
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Stock Orders Overview Chart
+        const ctxStockOrders = document.getElementById('stockOrdersGraph').getContext('2d');
+        const stockOrdersChart = new Chart(ctxStockOrders, {
+            type: 'doughnut',
+            data: {
+                labels: ['Delivered', 'Pending'],
+                datasets: [{
+                    label: 'Stock Orders',
+                    data: [8, 2], // Dummy data
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'right',
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

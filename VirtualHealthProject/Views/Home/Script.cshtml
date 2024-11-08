@@ -1,0 +1,149 @@
+﻿@{
+    ViewBag.Title = " Script Dashboard";
+    Layout = "_ScriptManagerLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script Manager Dashboard</title>
+    <link rel="stylesheet" href="path/to/your/styles.css"> <!-- Your CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Script Manager Dashboard Widgets -->
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg1"><i class="fa fa-file-medical" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>20</h3> <!-- Dynamic Script Count -->
+                    <span class="widget-title1">Pending Scripts <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg2"><i class="fa fa-check-square" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>15</h3> <!-- Processed Scripts -->
+                    <span class="widget-title2">Processed Scripts <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg3"><i class="fa fa-dollar-sign" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>$5000</h3> <!-- Total Cost -->
+                    <span class="widget-title3">Total Cost <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg4"><i class="fa fa-user-check" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>5</h3> <!-- Recent Admissions Requiring Scripts -->
+                    <span class="widget-title4">Recent Admissions <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Script Processing Rate</h4>
+                        <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 10% Increase This Month</span>
+                    </div>
+                    <canvas id="scriptProcessingGraph" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Costs Overview</h4>
+                        <div class="float-right">
+                            <ul class="chat-user-total">
+                                <li><i class="fa fa-circle current-users" aria-hidden="true"></i> Drug Costs</li>
+                                <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Consultation Costs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <canvas id="costOverviewGraph" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Charts -->
+    <script>
+        // Script Processing Rate Chart
+        const ctxScriptProcessing = document.getElementById('scriptProcessingGraph').getContext('2d');
+        const scriptProcessingChart = new Chart(ctxScriptProcessing, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Scripts Processed',
+                    data: [10, 15, 12, 20], // Dummy data
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Costs Overview Chart
+        const ctxCostOverview = document.getElementById('costOverviewGraph').getContext('2d');
+        const costOverviewChart = new Chart(ctxCostOverview, {
+            type: 'bar',
+            data: {
+                labels: ['Drug Costs', 'Consultation Costs'],
+                datasets: [{
+                    label: 'Costs',
+                    data: [3000, 2000], // Dummy data
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+

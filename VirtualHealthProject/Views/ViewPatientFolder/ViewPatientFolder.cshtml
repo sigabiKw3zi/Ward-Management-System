@@ -1,0 +1,92 @@
+﻿@model VirtualHealthProject.Models.PatientViewModel
+
+@{
+    ViewBag.Title = "View Patient Folder";
+    Layout = "_DoctorLayout";
+}
+
+<style>
+    html, body {
+        height: auto; /* or 100% */
+        overflow: auto;
+    }
+
+</style>
+
+<div class="container">
+    <h2>Patient Folder</h2>
+    <hr>
+
+    <h3>Patient Information</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>First Name:</label>
+                <p>@Model.FirstName</p>
+            </div>
+            <div class="form-group">
+                <label>Last Name:</label>
+                <p>@Model.LastName</p>
+            </div>
+            <div class="form-group">
+                <label>Date of Birth:</label>
+                <p>@Model.DateOfBirth.ToString("yyyy-MM-dd")</p>
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <p>@Model.Gender</p>
+            </div>
+            <div class="form-group">
+                <label>Contact Number:</label>
+                <p>@Model.ContactNumber</p>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <p>@Model.Email</p>
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <p>@Model.Address</p>
+            </div>
+            <div class="form-group">
+                <label>Postal Code:</label>
+                <p>@Model.PostalCode</p>
+            </div>
+        </div>
+    </div>
+
+    <h3>Medical Details</h3>
+    <div class="form-group">
+        <label>Primary Concern:</label>
+        <p>@Model.PrimaryConcern</p>
+    </div>
+
+    <h4>Current Medications</h4>
+    <ul>
+        @foreach (var medication in Model.SelectedCurrentMedication)
+        {
+            <li>@medication</li>
+        }
+    </ul>
+
+    <h4>Medical History</h4>
+    <ul>
+        @foreach (var history in Model.SelectedMedicalHistory)
+        {
+            <li>@history</li>
+        }
+    </ul>
+
+    <h4>Chronic Illness</h4>
+    <ul>
+        @foreach (var illness in Model.SelectedChronicIllness)
+        {
+            <li>@illness</li>
+        }
+    </ul>
+
+    <div class="text-right">
+        <a href="@Url.Action("Index", "ViewPatientFolder")" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+

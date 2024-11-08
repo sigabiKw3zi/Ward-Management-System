@@ -1,0 +1,126 @@
+﻿@model IEnumerable<VirtualHealthProject.Models.RequestConsumables>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_StockManagerLayout";
+}
+
+<div class="container-fluid mt-4 position-relative">
+    <!-- Page Heading and Create Button -->
+    <div class="d-flex justify-content-center mb-4 position-relative">
+        <h1 class="mb-4 text-center">Consumable Requests</h1>
+    </div>
+    
+    <div class="d-flex justify-content-between mb-4">
+        <p>
+            <a class="btn btn-primary" asp-action="Create">Create New Request</a>
+        </p>
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchRequests()">
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover w-100" id="printableTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ConsumableName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Notes)</th>
+                    <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                    <th>@Html.DisplayNameFor(model => model.RequestDate)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="requestTableBody">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ConsumableName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Notes)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>@Html.DisplayFor(modelItem => item.RequestDate)</td>
+                        <td>
+                            <a class="btn btn-sm btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-sm btn-outline-success" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    @@media print {
+        /* Hide everything except the table */
+        body * {
+            visibility: hidden;
+        }
+
+        #printableTable, #printableTable * {
+            visibility: visible;
+        }
+        
+        /* Make the table take up the full width */
+        #printableTable {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            font-size: 12pt; /* Adjust the font size for better readability */
+            border-collapse: collapse;
+        }
+        
+        /* Ensure the table headers are clear */
+        #printableTable th, #printableTable td {
+            padding: 10px;
+            border: 1px solid black; /* Adds borders for clarity */
+        }
+
+        /* Page break after the table if it's too long */
+        @@page {
+            size: auto; /* Adjust the page size based on the table content */
+            margin: 10mm; /* Small margin for printing */
+        }
+
+        /* Hide the action buttons when printing */
+        #printableTable td:last-child {
+            display: none;
+        }
+
+        /* Ensure table rows are not split between pages */
+        tr {
+            page-break-inside: avoid;
+        }
+    }
+</style>
+
+<script>
+    function searchRequests() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const table = document.getElementById('requestTableBody');
+        const rows = table.getElementsByTagName('tr');
+
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName('td');
+            let rowContainsSearchTerm = false;
+
+            for (let j = 0; j < cells.length - 1; j++) { // -1 to skip the actions column
+                const cell = cells[j];
+                if (cell) {
+                    const txtValue = cell.textContent || cell.innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        rowContainsSearchTerm = true;
+                        break; // Exit the inner loop if a match is found
+                    }
+                }
+            }
+
+            rows[i].style.display = rowContainsSearchTerm ? "" : "none";
+        }
+    }
+</script>

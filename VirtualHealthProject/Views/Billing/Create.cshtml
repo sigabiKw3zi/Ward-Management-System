@@ -1,0 +1,124 @@
+﻿@model VirtualHealthProject.Models.Billing
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_WardAdminLayout";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Patient Billing</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Billing Information</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="ScheduledMedication" class="control-label"></label>
+                        <input asp-for="ScheduledMedication" class="form-control" aria-label="Scheduled Medication" />
+                        <span asp-validation-for="ScheduledMedication" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" aria-label="First Name" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" class="form-control" aria-label="Last Name" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="AdmissionDate" class="control-label"></label>
+                        <input asp-for="AdmissionDate"   aria-label="AdmissionDate" />
+                        <span asp-validation-for="AdmissionDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="DischargeDate" class="control-label"></label>
+                        <input asp-for="DischargeDate" type="datetime-local" aria-label="Discharge Date" />
+                        <span asp-validation-for="DischargeDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="BedCharge" class="control-label"></label>
+                        <input asp-for="BedCharge" class="form-control" aria-label="Bed Charge" />
+                        <span asp-validation-for="BedCharge" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="MedicationCharge" class="control-label"></label>
+                        <input asp-for="MedicationCharge" class="form-control" aria-label="Medication Charge" />
+                        <span asp-validation-for="MedicationCharge" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="ServiceCharge" class="control-label"></label>
+                        <input asp-for="ServiceCharge" class="form-control" aria-label="Service Charge" />
+                        <span asp-validation-for="ServiceCharge" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="TotalAmount" class="control-label"></label>
+                        <input asp-for="TotalAmount" type="form-control" class="form-control" aria-label="Total Amount" />
+                        <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="AmountPaid" class="control-label"></label>
+                        <input asp-for="AmountPaid" class="form-control" aria-label="Amount Paid" />
+                        <span asp-validation-for="AmountPaid" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="PaymentStatus" class="control-label"></label>
+                        <input asp-for="PaymentStatus" class="form-control" aria-label="Payment Status" />
+                        <span asp-validation-for="PaymentStatus" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="PaymentDate" class="control-label"></label>
+                        <input asp-for="PaymentDate" type="datetime-local" aria-label="Payment Date" />
+                        <span asp-validation-for="PaymentDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a class="btn btn-secondary ml-2" asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

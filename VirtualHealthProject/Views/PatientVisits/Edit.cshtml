@@ -1,0 +1,62 @@
+﻿@model VirtualHealthProject.ViewModels.PatientVisitViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_DoctorLayout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+    <h4>PatientVisit</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-box">
+                <h4 class="card-title">Instruction Form</h4>
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="VisitId" />
+
+                    <div class="form-group">
+                        <label asp-for="VisitDateTime" class="control-label"></label>
+                        <input asp-for="VisitDateTime" class="form-control" />
+                        <span asp-validation-for="VisitDateTime" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Note" class="control-label"></label>
+                        <input asp-for="Note" class="form-control" />
+                        <span asp-validation-for="Note" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="UserId"></label>
+                        <select asp-for="UserId" asp-items="Model.Users" class="form-control"></select>
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="PatientID" class="control-label"></label>
+                        <select asp-for="PatientID" class="form-control" asp-items="ViewBag.PatientList"></select>
+                        <span asp-validation-for="PatientID" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-2 d-inline">
+                        <input type="submit" value="Save" class="btn btn-primary me-2" />
+                        <a class="btn btn-outline-primary" asp-action="Index">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

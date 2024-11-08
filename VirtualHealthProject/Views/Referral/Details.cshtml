@@ -1,0 +1,81 @@
+﻿@model VirtualHealthProject.Models.ReferralLetter
+@{
+    ViewBag.Title = "Referral Details";
+    Layout = "_WardAdminLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Hide everything but the patient info when printing */
+        @@media print {
+            body * {
+                visibility: hidden;
+            }
+            .form-container, .form-container * {
+                visibility: visible;
+            }
+            .form-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            .btn-print {
+                display: none;
+            }
+        }
+
+        /* Position the print button to the far right */
+        .btn-print {
+            float: right;
+            background-color: green;
+            color: white;
+            border: none;
+        }
+
+        /* Additional styling for container */
+        .form-container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .patient-info p {
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2></h2>
+
+        <!-- Print Button (positioned top-right) -->
+        <button onclick="window.print(); setTimeout(resetZoom, 500);" class="btn btn-primary btn-print">
+            <i class="bx bxs-printer"></i> Print Info
+        </button>
+
+        <div class="patient-info">
+            <h3>Patient Information</h3>
+            <p>Name: @Model.FirstName</p>
+            <p>Surname: @Model.LastName</p>
+            <p>Date of Birth: @Model.DateOfBirth.ToString("yyyy-MM-dd")</p>
+            <p>Contact Number: @Model.ContactNumber</p>
+            <p>Primary Concern: @Model.PrimaryConcern</p>
+            <p>Current Medication: @Model.CurrentMedications</p>
+            <p>Appointment Date: @Model.AppointmentDate.ToString("yyyy-MM-dd")</p>
+            <p>Appointment Time: @Model.AppointmentTime.ToString()</p>
+        </div>
+
+        <a href="@Url.Action("Index")">Back to List</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
